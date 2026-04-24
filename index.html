@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ecommerce</title>
+  <!-- CSS Dependencies -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <!-- External Styles -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#" onclick="navigate('home')">Ecommerce</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" id="nav-home" href="#" onclick="navigate('home')">Home</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-products" href="#" onclick="navigate('products')">Products</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-about" href="#" onclick="navigate('about')">About</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-contact" href="#" onclick="navigate('contact')">Contact</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2 flex-wrap mt-2 mt-lg-0">
+        <span class="user-badge" id="userBadge"><i class="bi bi-person-circle me-1"></i><span id="userNameDisplay"></span></span>
+        <button class="btn btn-outline-dark" id="btnLogin" onclick="navigate('login')"><i class="bi bi-box-arrow-in-right me-1"></i>Login</button>
+        <button class="btn btn-outline-dark" id="btnRegister" onclick="navigate('register')"><i class="bi bi-person-plus me-1"></i>Register</button>
+        <button class="btn btn-outline-dark d-none" id="btnLogout" onclick="logout()"><i class="bi bi-box-arrow-right me-1"></i>Logout</button>
+        <button class="btn btn-cart" onclick="navigate('cart')"><i class="bi bi-cart3 me-1"></i>Cart (<span id="cartCount">0</span>)</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="mainToast" class="toast align-items-center text-bg-dark border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMsg">Item added to cart!</div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== HOME PAGE ==================== -->
+<div id="page-home" class="page active">
+  <!-- Hero -->
+  <div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h2>New Season Arrivals</h2>
+      <p>This is a wider card with supporting text below as a natural lead-in to additional content.<br>This content is a little bit longer.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="section-heading">Latest Products</h2>
+    <!-- Filter -->
+    <div class="filter-tabs" id="homeFilter">
+      <button class="filter-btn active" onclick="filterProducts('all','home')">All</button>
+      <button class="filter-btn" onclick="filterProducts('men\'s clothing','home')">Men's Clothing</button>
+      <button class="filter-btn" onclick="filterProducts('women\'s clothing','home')">Women's Clothing</button>
+      <button class="filter-btn" onclick="filterProducts('jewelery','home')">Jewelry</button>
+      <button class="filter-btn" onclick="filterProducts('electronics','home')">Electronics</button>
+    </div>
+    <div id="homeProductsGrid" class="row g-3 mb-5">
+      <div class="spinner-wrap col-12"><div class="spinner-border" role="status"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PRODUCTS PAGE ==================== -->
+<div id="page-products" class="page">
+  <div class="page-title-bar">
+    <h1>Latest Products</h1>
+  </div>
+  <div class="container">
+    <div class="filter-tabs" id="productsFilter">
+      <button class="filter-btn active" onclick="filterProducts('all','products')">All</button>
+      <button class="filter-btn" onclick="filterProducts('men\'s clothing','products')">Men's Clothing</button>
+      <button class="filter-btn" onclick="filterProducts('women\'s clothing','products')">Women's Clothing</button>
+      <button class="filter-btn" onclick="filterProducts('jewelery','products')">Jewelry</button>
+      <button class="filter-btn" onclick="filterProducts('electronics','products')">Electronics</button>
+    </div>
+    <div id="productsGrid" class="row g-3 mb-5">
+      <div class="spinner-wrap col-12"><div class="spinner-border" role="status"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ABOUT PAGE ==================== -->
+<div id="page-about" class="page">
+  <div class="page-title-bar"><h1>About Us</h1></div>
+  <div class="container">
+    <p class="about-text">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum facere doloremque veritatis odit similique sequi. 
+      Odit amet fuga nam quam quasi facilis sed doloremque saepe sint perspiciatis explicabo totam vero quas provident ipsam, 
+      veritatis nostrum velit quos recusandae est mollitia esse fugit dolore laudantium. Ex vel explicabo earum unde eligendi 
+      autem praesentium, doloremque distinctio nesciunt porro tempore quis eaque labore voluptatibus ea necessitatibus exercitationem 
+      tempora molestias. Ad consequuntur veniam sequi ullam tempore vel tenetur soluta dolore sunt maxime aliquam corporis est, 
+      quo saepe dolorem optio minus sint nemo totam dolorum! Reprehenderit delectus expedita a alias nam recusandae illo debitis 
+      repellat libero, quasi explicabo molestiae saepe, dolorem tempore itaque eveniet quam dignissimos blanditiis excepturi harum numquam vel nihil? Ipsum
+    </p>
+
+    <h2 class="section-heading">Our Products</h2>
+    <div class="row g-3 mb-5">
+      <div class="col-6 col-md-3">
+        <div class="category-card" onclick="navigate('products');filterProducts('men\'s clothing','products')">
+          <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Men's Clothing"/>
+          <div class="category-card-title">Men's Clothing</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="category-card" onclick="navigate('products');filterProducts('women\'s clothing','products')">
+          <img src="https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Women's Clothing"/>
+          <div class="category-card-title">Women's Clothing</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="category-card" onclick="navigate('products');filterProducts('jewelery','products')">
+          <img src="https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Jewelry"/>
+          <div class="category-card-title">Jewelery</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="category-card" onclick="navigate('products');filterProducts('electronics','products')">
+          <img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Electronics"/>
+          <div class="category-card-title">Electronics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CONTACT PAGE ==================== -->
+<div id="page-contact" class="page">
+  <div class="page-title-bar"><h1>Contact Us</h1></div>
+  <div class="contact-wrap">
+    <div id="contactAlert" class="alert auth-alert d-none"></div>
+    <div class="mb-3">
+      <label>Name</label>
+      <input type="text" class="form-control" id="contactName" placeholder="Enter your name"/>
+    </div>
+    <div class="mb-3">
+      <label>Email</label>
+      <input type="email" class="form-control" id="contactEmail" placeholder="name@example.com"/>
+    </div>
+    <div class="mb-3">
+      <label>Message</label>
+      <textarea class="form-control" id="contactMsg" placeholder="Enter your message"></textarea>
+    </div>
+    <div class="text-center mt-4">
+      <button class="btn btn-dark px-5" onclick="sendContact()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CART PAGE ==================== -->
+<div id="page-cart" class="page">
+  <div class="page-title-bar"><h1>Cart</h1></div>
+  <div class="cart-wrap">
+    <div id="cartEmpty" class="empty-cart d-none">
+      <i class="bi bi-cart-x"></i>
+      <p>Your cart is empty.</p>
+      <button class="btn btn-dark mt-2" onclick="navigate('products')">Shop Now</button>
+    </div>
+    <div id="cartContent" class="row g-4">
+      <div class="col-lg-7">
+        <div class="border rounded-3 p-3">
+          <h6 class="fw-semibold mb-3">Item List</h6>
+          <div id="cartItems"></div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="order-summary">
+          <h5>Order Summary</h5>
+          <div class="summary-row"><span id="productCountLabel">Products (0)</span><span id="subtotalDisplay">$0</span></div>
+          <div class="summary-row"><span>Shipping</span><span>$30</span></div>
+          <div class="summary-row total"><span>Total amount</span><span id="totalDisplay">$30</span></div>
+          <button class="btn-checkout" onclick="checkout()">Go to checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LOGIN PAGE ==================== -->
+<div id="page-login" class="page">
+  <div class="container">
+    <div class="auth-wrap mx-auto">
+      <h2>Welcome back</h2>
+      <p class="subtitle">Login to your account</p>
+      <div id="loginAlert" class="alert auth-alert d-none"></div>
+      <div class="mb-3">
+        <label>Email address</label>
+        <input type="email" class="form-control" id="loginEmail" placeholder="name@example.com"/>
+      </div>
+      <div class="mb-3">
+        <label>Password</label>
+        <input type="password" class="form-control" id="loginPassword" placeholder="Enter password"/>
+      </div>
+      <button class="btn-submit" onclick="doLogin()"><i class="bi bi-box-arrow-in-right me-1"></i>Login</button>
+      <div class="auth-switch">
+        Don't have an account? <a onclick="navigate('register')">Register here</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== REGISTER PAGE ==================== -->
+<div id="page-register" class="page">
+  <div class="container">
+    <div class="auth-wrap mx-auto">
+      <h2>Create Account</h2>
+      <p class="subtitle">Join us today — it's free!</p>
+      <div id="registerAlert" class="alert auth-alert d-none"></div>
+      <div class="mb-3">
+        <label>Full Name</label>
+        <input type="text" class="form-control" id="regName" placeholder="Enter your full name"/>
+      </div>
+      <div class="mb-3">
+        <label>Email address</label>
+        <input type="email" class="form-control" id="regEmail" placeholder="name@example.com"/>
+      </div>
+      <div class="mb-3">
+        <label>Password</label>
+        <input type="password" class="form-control" id="regPassword" placeholder="Create a password (min 6 chars)"/>
+      </div>
+      <div class="mb-3">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" id="regConfirm" placeholder="Confirm your password"/>
+      </div>
+      <button class="btn-submit" onclick="doRegister()"><i class="bi bi-person-plus me-1"></i>Register</button>
+      <div class="auth-switch">
+        Already have an account? <a onclick="navigate('login')">Login here</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PRODUCT DETAIL MODAL ==================== -->
+<div class="modal fade" id="productModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header border-0 pb-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-4">
+          <div class="col-md-5 text-center">
+            <img id="modalImg" src="" alt="" class="modal-product-img"/>
+          </div>
+          <div class="col-md-7">
+            <span id="modalCategory" class="badge bg-secondary mb-2" style="font-size:0.75rem;text-transform:capitalize;"></span>
+            <h5 id="modalTitle" class="fw-bold mb-2" style="font-size:1rem;"></h5>
+            <p id="modalDesc" class="text-muted" style="font-size:0.87rem;"></p>
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span id="modalPrice" class="fw-bold fs-5"></span>
+              <span id="modalRating" class="text-warning" style="font-size:0.85rem;"></span>
+            </div>
+            <button class="btn btn-dark w-100" onclick="addToCartFromModal()">
+              <i class="bi bi-cart-plus me-1"></i>Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Made with <span style="color:#dc3545;">&#10084;</span> by <a href="#">JP groups</a>
+</footer>
+
+<!-- JavaScript Dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<!-- External Script -->
+<script src="script.js"></script>
+</body>
+</html>
